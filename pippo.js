@@ -23,23 +23,6 @@ Object.keys(employees[0]).forEach(key => {
 
 
 
-// for (i = 0; i < employees.length; i++) {
-//     let bodyRow = document.createElement('TR');
-//     let td = document.createElement('TD')
-//     let idNode = document.createTextNode(employees[i]["id"]);
-//     td.appendChild(idNode)
-//     bodyRow.appendChild(td);
-
-//     let td2 = document.createElement('TD')
-//     let nameNode = document.createTextNode(employees[i]["name"]);
-//     td2.appendChild(nameNode)
-//     bodyRow.appendChild(td2);
-
-//     let td3 = document.createElement('TD')
-//     td3.appendChild(document.createTextNode(employees[i]["surame"]))
-//     bodyRow.appendChild(td);
-
-// }
 
 
 for (i = 0; i < employees.length; i++) {
@@ -93,16 +76,18 @@ function formatDate(date) {
 
 fetch('https://jsonplaceholder.typicode.com/posts')
   .then(response => response.json())
-  .then(json => console.log(json))
+  .then(pippo => {
+      let list = document.getElementById("post-list")
+      for (let i = 0; i < pippo.length; i++) {
+          const post = pippo[i];
+          console.log(post.title);
+          let listElement = document.createElement("LI");
+          listElement.className = "list-group-item"
+          let textNode = document.createTextNode(post.title);
+          listElement.appendChild(textNode);
+          list.appendChild(listElement)
+      }
+      })
   .catch(error=> console.log(error))
 
-
-
-
-
-
-
-
-
-
-   
+  
